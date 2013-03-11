@@ -37,6 +37,13 @@
     [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"createLineScopingChart(\"%@\",\"%@\",\"%@\",%@);", options.title, options.axisTitle, options.title, [options getSeriesString]]];
 }
 
++ (void)createScatterChartWithLineChartInWebView:(UIWebView *)webView withOptions:(HighstockOptions *)options {
+    [self initWebView:webView withOptions:options];
+    [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"createCombinedPlot(\"%@\", \"%@\", \"%@\", %@, %@, %@);", options.title, options.axisTitle, options.dataAxisTitle, [options getSeriesStringForSeries:SeriesEnumCurrentScatterSeries], [options getSeriesStringForSeries:SeriesEnumPeriodScatterSeries], [options getSeriesStringForSeries:SeriesEnumAvgLineSeries]]];
+    
+    NSLog(@"%@", [options getSeriesStringForSeries:SeriesEnumPeriodScatterSeries]);
+}
+
 + (NSString*)getJSDataPointsWithXValues:(NSArray*)xValues andYValues:(NSArray*)yValues {
     if ([xValues count] != [yValues count]) {
         return nil;

@@ -8,7 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+enum SeriesEnum {
+    SeriesEnumCurrentScatterSeries = 0,
+    SeriesEnumPeriodScatterSeries = 1,
+    SeriesEnumAvgLineSeries = 2
+};
 
 @protocol OptionsWithSeries <NSObject>
--(NSString *)getSeriesString;
+- (NSString *)getSeriesString;
+- (NSString *)getSeriesStringForSeries:(enum SeriesEnum)seriesEnum;
 @end
